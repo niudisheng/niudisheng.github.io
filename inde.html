@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>谁家小孩，我家的</title>
+    <style>        
+        .image-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .image-container img {
+            display: block;
+            width: calc(1920px*0.8); /* 根据需要调整宽度 */
+            height: calc(1080px*0.8); /* 根据需要调整高度 */
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .image-container img.hover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+
+        .image-container:hover img.hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="01.png" alt="Original Image">
+        <img src="02.png" alt="Hover Image" class="hover">
+    </div>
+</body>
+</html>
