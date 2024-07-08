@@ -5,67 +5,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>谁家小孩，我家的</title>
     <style>        
+        h1 {
+            text-align: center;
+            font-size: 50px;
+            font-weight: bolder;
+            color: blue;
+        }
         .image-container {
             position: relative;
-            display: inline-block;
+            width: 100%;
+            text-align: center;
         }
 
         .image-container img {
             display: block;
-            width: calc(1920px*0.8); /* 根据需要调整宽度 */
-            height: calc(1080px*0.8); /* 根据需要调整高度 */
+            max-width: 100%;
+            height: auto;
             transition: opacity 0.4s ease-in-out;
+            margin: 0 auto;
+            cursor: pointer; /* 添加鼠标指针样式 */
         }
 
         .image-container img.hover {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             opacity: 0;
         }
 
         .image-container:hover img.hover {
             opacity: 1;
         }
-        .a{
+
+        .image-container img.centerimage {
+            width: 200px;
+            height: 200px;
+        }
+
+        span {
+            font-weight: bolder;
+        }
+
+        .a {
             display: inline-block;
             color: black;
-            /* background-color: blue; */
             font-size: 45px;
             font-weight: bolder;
-            /* width: 800px; */
-            /* height: 100px; */
         }
-        .b{
-            display: inline-block;
+
+        .b1 {
             color: orange;
-            /* background-color: aquamarine; */
-            width: 1000px;
             font-size: 20px;
-            width: 100;
+            width: 100px;
+            position: relative;
         }
-        span{
-            display: inline-block;
+
+        .b2 {
             color: red;
             font-weight: bolder;
-            /* background-color: blue; */
-            font-size: 45px;
-            /* width: 800px; */
+            font-size: 40px;
+            position: relative;
+            left: 0;
         }
-        </style>
+
+        .right-aligned {
+            float: right;
+            clear: both;
+        }
+    </style>
 </head>
 <body>
-    <div> 
-        <span class="b">你怎么知道我老婆</span> 
-        <span class="a">这是我老婆！↓</span>
+    <h1>非常好心铃，爱来自牛笛声❤</h1>
+    <br>
+    <div>
+        <span class="b2">我老婆本间心铃，黑发萝莉双马尾，童颜巨乳白发带，一颗呆毛，尽显可爱</span>
         <br>
-        <span>美若天仙，勤俭持家，冰雪聪明，彬彬有礼，连工口的事情都略知一二</span>
-        <div>            
+        <span class="b1">你怎么知道</span>
+        <br>
+        <div class="image-container" onclick="playSound('sound1')">
+            <img src="p0.png" alt="Original Image" class="centerimage">
+            <img src="p1.png" alt="Hover Image" class="centerimage hover">
         </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <span class="b1 right-aligned" style="color: green;">你怎么知道</span>
+        <br>
+        <span class="b2 right-aligned" style="color: violet;">我老婆美若天仙，勤俭持家，冰雪聪明，彬彬有礼，连工口的事情都略知一二</span>
+        <span class="a">这是我老婆！↓</span>
+        <div></div>
     </div>
     <div class="image-container">
         <img src="01.png" alt="Original Image">
         <img src="02.png" alt="Hover Image" class="hover">
     </div>
+    <!-- 音频文件 -->
+    <audio id="sound1" src="盯.mp3"></audio>
+    
+
+    <script>
+        function playSound(soundId) {
+            const audio = document.getElementById(soundId);
+            audio.currentTime = 0; // 重置音频播放时间
+            audio.play();
+        }
+    </script>
 </body>
 </html>
