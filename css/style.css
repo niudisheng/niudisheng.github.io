@@ -1,0 +1,117 @@
+body {
+    /* 使用本地图片作为背景 */
+    background-image: url('../image/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* 其他样式保持不变... */
+}
+h1 {
+    text-align: center;
+    font-size: 50px;
+    font-weight: bolder;
+    color: blue;
+}
+.container {
+    display: grid;
+    grid-template-columns: 25rem 1fr; /* 定义两列，第一列为图片宽度，第二列为剩余宽度 */
+    grid-gap: 1rem; /* 图片与文字之间的间距 */
+    align-items: start; /* 文字顶部对齐 */
+}
+
+.character-image {
+    width: 100%; /* 图片宽度占满第一列 */
+    height: auto;
+    object-fit: contain;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column; /* 文本垂直堆叠 */
+    justify-content: flex-start; /* 文本从顶部开始 */
+}
+.chara-name{
+    /* background-color: violet; */
+    font-size: 3rem;
+    font-weight: bolder;
+    color: rgb(98, 27, 109);
+    margin: 0;
+    /* margin-right: 50%; */
+    /* background-color: aquamarine; */
+    
+}
+
+
+
+.image-container {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.image-container img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    transition: opacity 0.4s ease-in-out;
+    margin: 0 auto;
+    cursor: pointer; /* 添加鼠标指针样式 */
+}
+
+.image-container img.hover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+}
+
+.image-container:hover img.hover {
+    opacity: 1;
+}
+
+.image-container img.centerimage {
+    width: 200px;
+    height: 200px;
+}
+
+span {
+    font-weight: bolder;
+}
+
+.a {
+    display: inline-block;
+    color: black;
+    font-size: 45px;
+    font-weight: bolder;
+}
+
+.b1 {
+    color: orange;
+    font-size: 20px;
+    width: 100px;
+    position: relative;
+}
+
+.b2 {
+    color: red;
+    font-weight: bolder;
+    font-size: 40px;
+    position: relative;
+    left: 0;
+}
+
+.right-aligned {
+    float: right;
+    clear: both;
+}
+.playButton {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    margin: 3rem;
+}
+#buttonImg {
+    width: 100px; /* 调整按钮图片的大小 */
+    height: auto;
+}

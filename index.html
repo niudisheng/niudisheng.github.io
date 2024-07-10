@@ -4,128 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>谁家小孩，我家的</title>
-    <style>        
-       body {
-            /* 使用本地图片作为背景 */
-            background-image: url('background.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            /* 其他样式保持不变... */
-        }
-        h1 {
-            text-align: center;
-            font-size: 50px;
-            font-weight: bolder;
-            color: blue;
-        }
-        .container {
-    display: grid;
-    grid-template-columns: 25rem 1fr; /* 定义两列，第一列为图片宽度，第二列为剩余宽度 */
-    grid-gap: 1rem; /* 图片与文字之间的间距 */
-    align-items: start; /* 文字顶部对齐 */
-}
-
-.character-image {
-    width: 100%; /* 图片宽度占满第一列 */
-    height: auto;
-    object-fit: contain;
-}
-
-.text-container {
-    display: flex;
-    flex-direction: column; /* 文本垂直堆叠 */
-    justify-content: flex-start; /* 文本从顶部开始 */
-}
-        .chara-name{
-            /* background-color: violet; */
-            font-size: 3rem;
-            font-weight: bolder;
-            color: rgb(98, 27, 109);
-            margin: 0;
-            /* margin-right: 50%; */
-            background-color: aquamarine;
-            
-        }
-        
-
-
-        .image-container {
-            position: relative;
-            width: 100%;
-            text-align: center;
-        }
-
-        .image-container img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-            transition: opacity 0.4s ease-in-out;
-            margin: 0 auto;
-            cursor: pointer; /* 添加鼠标指针样式 */
-        }
-
-        .image-container img.hover {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-        }
-
-        .image-container:hover img.hover {
-            opacity: 1;
-        }
-
-        .image-container img.centerimage {
-            width: 200px;
-            height: 200px;
-        }
-
-        span {
-            font-weight: bolder;
-        }
-
-        .a {
-            display: inline-block;
-            color: black;
-            font-size: 45px;
-            font-weight: bolder;
-        }
-
-        .b1 {
-            color: orange;
-            font-size: 20px;
-            width: 100px;
-            position: relative;
-        }
-
-        .b2 {
-            color: red;
-            font-weight: bolder;
-            font-size: 40px;
-            position: relative;
-            left: 0;
-        }
-
-        .right-aligned {
-            float: right;
-            clear: both;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="js/button.js"></script>
+   
 </head>
 <body>
+    
     <h1>非常好心铃，爱来自牛笛声❤</h1>
     <br>
     <!-- 人物介绍 -->
     <div class="container">
-        <img src="Misuzu.png" alt="" class="character-image">
+        <img src="image/Misuzu.png" alt="" class="character-image">
         <div class="text-container">
-            <p class="chara-name" style="color: blue; font-size: 4rem;">本间心铃</p>
+            <p class="chara-name" style="color: black; font-size: 5rem;font-family: kaiti;">本间心铃</p>
             <br>
-            <p class="chara-name">本名:本間（ほんま） 心鈴（みすず）</p>
-            <p class="chara-name" style="margin-left: 7rem;">Honma Misuzu</p>
-            <p class="chara-name" style="font-size: 2rem;"> <span style="font-size: 3rem;";>人物介绍：</span>本间礼次郎的女儿。
+            <p class="chara-name" style="color: black; font-size: 3rem;">本名:本間（ほんま） 心鈴（みすず）</p>
+            <p class="chara-name" style="margin-left: 7rem;color:black;">Honma     <span style="margin-left: 10rem;">Misuzu</span></p>
+            <p class="chara-name" style="font-size: 2rem;color: #D24DE7;"> <span style="font-size: 3rem;";>人物介绍：</span>本间礼次郎的女儿。
                 也是中村丽华的女儿。
                 拥有着和丽华一样的外表，
                 有着与礼次郎相似可怕的眼睛，鸟谷纱希评价她是“可怕的女儿”。
@@ -133,8 +29,21 @@
                 举止得体，
                 让人感觉不到危险性。
                 称鱼鹰的冠羽为「心意気」。</p>
-            
-        </div>
+            <p>
+                <br>    
+                <br>
+                <button class="playButton" onclick="togglePlay(0)">
+                    <i class="fa-solid fa-circle-play fa-2xl" style="color: #B197FC;font-size: 5rem;"></i>
+                </button>
+                <button class="playButton" onclick="togglePlay(1)">
+                    <i class="fa-solid fa-circle-play fa-2xl" style="color: #B197FC;font-size: 5rem;"></i>
+                </button>
+                <button class="playButton" onclick="togglePlay(2)">
+                    <i class="fa-solid fa-circle-play fa-2xl" style="color: #B197FC;font-size: 5rem;"></i>
+                </button>
+            </p>
+            </div>
+        <!-- <img id="characterImage" src="character_idle.png" alt="Character Image"> -->
     </div>
 
 
@@ -145,8 +54,8 @@
         <span class="b1">你怎么知道</span>
         <br>
         <div class="image-container" onclick="playSound('sound1')">
-            <img src="p0.png" alt="Original Image" class="centerimage">
-            <img src="p1.png" alt="Hover Image" class="centerimage hover">
+            <img src="image/p0.png" alt="Original Image" class="centerimage">
+            <img src="image/p1.png" alt="Hover Image" class="centerimage hover">
         </div>
         <br>
         <br>
@@ -160,11 +69,11 @@
         <div></div>
     </div>
     <div class="image-container">
-        <img src="01.png" alt="Original Image">
-        <img src="02.png" alt="Hover Image" class="hover">
+        <img src="image/01.png" alt="Original Image">
+        <img src="image/02.png" alt="Hover Image" class="hover">
     </div>
     <!-- 音频文件 -->
-    <audio id="sound1" src="盯.mp3"></audio>
+    <audio id="sound1" src="sound/盯.mp3"></audio>
     
 
     <script>
