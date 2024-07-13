@@ -1,8 +1,9 @@
 let isPlaying = false;
 currentaudio = null;
 function togglePlay(index) {
+    index=index+1;
     console.log(isPlaying);
-    let buttonImg = document.getElementsByClassName('playButton')[index];
+    // let buttonImg = document.getElementsByClassName('playButton')[index];
     // const characterImage = document.getElementById('characterImage');
     let path='voicel.mp3';
     if (index === 0) {
