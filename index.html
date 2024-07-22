@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="js/button.js"></script>
     <script src="js/background.js"></script>
-   
+    <script src="js/form.js"></script>
+    
 </head>
 <body>
-    <!-- <audio src="sound/backgroud.mp3" autoplay loop controls></audio> -->
-    <div class="container" style="display: grid; grid-template-columns: auto auto; column-gap: 2rem; place-items: center;">
+    <div  style="display: grid; grid-template-columns: auto auto; column-gap: 2rem; place-items: center;">
         <h1 style="margin-right: 2rem;font-size: 5rem;">非常好心铃，爱来自牛笛声❤</h1>
         <button class="playButton"  onclick="backgroundPlay()">
             <i id="backgroudMusic" class="fa-solid fa-music fa-2xl" style="color: #B197FC;font-size: 5rem;"></i>
@@ -20,10 +20,31 @@
     </div>
 
     <br>
+    <!-- 弹出窗口 -->
+    <div id="myModal" class="popup">
+        <div class="popup-content">
+            <div class="fg" >
+                <canvas id="canvas" width="2000" height="4000" style="display: none;"></canvas>
+                <img id="background-image" src="image/fg/mis/z2/A01.png" alt="Background Image" class="image">
+                <img id="foreground-image" src="image/fg/mis/z2/a1.png" alt="Foreground Image" class="image">
+                <img id="merged-image" class="merged-image" alt="Merged Image">
+            </div>
+            <span class="close">&times;</span>
+            <div class="right-content">
+                <p id="caption" style="font-size: 3rem;">点击即可获得完全版的可爱↓</p>
+                <button class="download-button" id="downloadBtn">
+                    Download
+                    <i class="fa-solid fa-download"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- 人物介绍 -->
     <div class="container">
-        <img src="image/Misuzu.png" alt="" class="character-image">
-        <div class="text-container">
+        <img src="image/Misuzu.png" alt="心铃酱的可爱立绘" class="character-image" id="characterImage" onclick="getForm('merged-image')">
+            
+         <div class="text-container">
             <p class="chara-name" style="color: black; font-size: 5rem;font-family: kaiti;">本间心铃</p>
             <br>
             <p class="chara-name" style="color: black; font-size: 3rem;">本名:本間（ほんま） 心鈴（みすず）</p>

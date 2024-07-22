@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹出窗口示例</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* 模态窗口背景 */
+        .popup {
+            display: none; /* 默认隐藏 */
+            position: fixed; /* 固定定位 */
+            z-index: 1; /* 确保它在所有其他元素之上 */
+            left: 0;
+            top: 0;
+            width: 100%; /* 全屏宽度 */
+            height: 100%; /* 全屏高度 */
+            overflow: auto; /* 内容过多时允许滚动 */
+            background-color: rgba(0,0,0,0.5); /* 半透明黑色背景 */
+        }
+
+        /* 模态窗口内容 */
+        .popup-content {
+            background-color: #fefefe;
+            border: 0.1rem solid gray;
+            margin: 5% auto; /* 垂直居中 */
+            padding: 20px;
+            width: 80%; /* 宽度调整 */
+            position: relative; /* 相对定位，以便于放置关闭按钮 */
+            display: flex;
+            justify-content: space-between; /* 空间均匀分布 */
+            background-color: chartreuse;
+        }
+
+        /* 图片切换容器 */
+        .fg {
+            position: relative;
+            width: 50%; /* 左侧宽度 */
+            height: 100%;
+            display: flex;
+            flex-direction: column; /* 纵向排列 */
+            justify-content: center; /* 垂直居中 */
+            background-color: aqua;
+        }
+
+        .fg .image {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: auto;
+            opacity: 0;
+        }
+
+        .merged-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #B197FC;
+            transform: scale(0.35);
+            display: block;
+        }
+
+        /* 右侧内容容器样式 */
+        .right-content {
+            width: 50%; /* 右侧宽度 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            padding-right: 2rem;
+        }
+
+        /* 下载按钮样式 */
+        .download-button {
+            position: relative;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #f1f1f1;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .download-button:hover {
+            background-color: #ddd;
+        }
+
+        /* 关闭按钮样式 */
+        .close {
+            color: #aaa;
+            float: right; /* 右对齐 */
+            font-size: 2rem;
+            font-weight: bold;
+            position: absolute; /* 绝对定位 */
+            right: 1rem; /* 距离右侧10px */
+            top: 1rem; /* 距离顶部10px */
+            cursor: pointer;
+        }
+
+        /* 关闭按钮的hover效果 */
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 弹出窗口 -->
+<div id="myModal" class="popup">
+    <div class="popup-content">
+        <div class="fg">
+            <canvas id="canvas" width="2000" height="4000" style="display: none;"></canvas>
+            <img id="background-image" src="image/fg/mis/z2/A01.png" alt="Background Image" class="image">
+            <img id="foreground-image" src="image/fg/mis/z2/a1.png" alt="Foreground Image" class="image">
+            <img id="merged-image" class="merged-image" alt="Merged Image">
+        </div>
+        <span class="close">&times;</span>
+        <div class="right-content">
+            <p id="caption" style="font-size: 1rem;">点击即可获得完全版的可爱↓</p>
+            <button class="download-button" id="downloadBtn">
+                Download
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 获取弹出窗口
+    var modal = document.getElementById("myModal");
+
+    // 获取关闭按钮
+    var span = document.getElementsByClassName("close")[0];
+
+    // 打开弹出窗口
+    window.onload = function() {
+        modal.style.display = "block";
+        mergeImages();
+    };
+
+    // 关闭弹出窗口
+    span.onclick = function() {
+        modal.style.display = "none";
+    };
+
+    // 点击窗口外部关闭弹出窗口
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+
+    function mergeImages() {
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        const backgroundImage = document.getElementById('background-image');
+        const foregroundImage = document.getElementById('foreground-image');
+        
+        backgroundImage.onload = () => {
+            ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+            foregroundImage.onload = () => {
+                const top = canvas.height * 0.1;
+                const left = canvas.width * 0.1;
+                const width = canvas.width * 0.8;
+                const height = foregroundImage.height * (width / foregroundImage.width);
+                ctx.drawImage(foregroundImage, left, top, width, height);
+                const mergedImage = document.getElementById('merged-image');
+                mergedImage.src = canvas.toDataURL('image/png');
+                mergedImage.style.display = 'block';
+            };
+        };
+    }
+
+    // 下载合成后的图像
+    document.getElementById('downloadBtn').onclick = function() {
+        const mergedImage = document.getElementById('merged-image');
+        const link = document.createElement('a');
+        link.href = mergedImage.src;
+        link.download = 'merged-image.png';
+        link.click();
+    };
+</script>
+
+</body>
+</html>

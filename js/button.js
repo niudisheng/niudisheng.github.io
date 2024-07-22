@@ -40,7 +40,7 @@ function togglePlay(index) {
         currentaudio=null;       
         for (let i = 0; i < 3; i++) {
             let icon = document.getElementsByTagName('i')[i];
-            icon.className = 'fa-solid fa-circle-play fa-2xl';
+            icon.className = 'fa-solid fa-music fa-2xl';
         }
         
         // let icon = document.getElementsByTagName('i')[index];
