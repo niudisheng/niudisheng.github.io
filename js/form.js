@@ -75,10 +75,13 @@ function setButton() {
         // 点击按钮时展开或收起 front 容器
         toggleButton.addEventListener('click', function() {
             if (fgContainer.style.maxHeight === '0px') {
-                // fgContainer.style.maxHeight = fgContainer.scrollHeight + 'px';
-                fgContainer.style.maxHeight = 506 + 'px';
-                console.log(fgContainer.scrollHeight);
+                fgContainer.style.maxHeight = fgContainer.scrollHeight + 'px';
+                fgContainer.style.overflow = 'visible';
+                // console.log(fgContainer.overflow);
+                // fgContainer.style.maxHeight = 506 + 'px';
+                // console.log(fgContainer.scrollHeight);
             } else {
+                fgContainer.style.overflow = 'hidden';
                 fgContainer.style.maxHeight = '0px';
             }
         });
@@ -86,7 +89,9 @@ function setButton() {
         toggleButton2.addEventListener('click', function() {
             if (faceContainer.style.maxHeight === '0px') {
                 faceContainer.style.maxHeight = faceContainer.scrollHeight + 'px';
+                faceContainer.style.overflow = 'visible';
             } else {
+                faceContainer.style.overflow = 'hidden';
                 faceContainer.style.maxHeight = '0px';
             }
         });
@@ -135,6 +140,40 @@ function loadFace(type){
             ]
         ];
     }
+    else if (type=="b1"){
+        faceData = [        
+            [
+                { src: 'image/fg/mis/z2/b1.png', alt: 'TypeA1' },
+                { src: 'image/fg/mis/z2/b2.png', alt: 'TypeA1' },
+                { src: 'image/fg/mis/z2/b3.png', alt: 'TypeA2' },
+                { src: 'image/fg/mis/z2/b4.png', alt: 'TypeA2' },
+                { src: 'image/fg/mis/z2/b5.png', alt: 'TypeA2' },
+            ],
+            [
+                { src: 'image/fg/mis/z2/b6.png', alt: 'TypeA2' },
+                { src: 'image/fg/mis/z2/b7.png', alt: 'TypeA2' },
+                { src: 'image/fg/mis/z2/b8.png', alt: 'TypeB1' },
+                { src: 'image/fg/mis/z2/b9.png', alt: 'TypeB2' },
+                { src: 'image/fg/mis/z2/b10.png', alt: 'TypeB2' },              
+                
+            ],
+            [
+                { src: 'image/fg/mis/z2/b11h.png', alt: 'TypeB3' },
+                { src: 'image/fg/mis/z2/b12.png', alt: 'TypeB3' },
+                { src: 'image/fg/mis/z2/b13.png', alt: 'TypeE' },
+                { src: 'image/fg/mis/z2/b14.png', alt: 'TypeE' },
+            ]
+        ];
+
+    }
+    else if (type=="e1"){
+        faceData = [
+            { src: 'image/fg/mis/z2/e1.png', alt: 'TypeA1' },
+            { src: 'image/fg/mis/z2/e2.png', alt: 'TypeA1' },
+            { src: 'image/fg/mis/z2/e12.png', alt: 'TypeA2' },
+            
+        ];
+    }
     const container = document.getElementById('face-container');
     const targetImage = document.getElementById('foreground-image');
     // 清空容器中的现有内容
@@ -166,12 +205,12 @@ function loadFace(type){
     });
     }
 // 下载图片的函数
-function downloadImage(src) {
+function downloadImage() {
     // 下载合成后的图像
     const mergedImage = document.getElementById('merged-image');
         const link = document.createElement('a');
         link.href = mergedImage.src;
-        link.download = 'merged-image.png';
+        link.download = '心铃超绝可爱立绘！.png';
         link.click();
     }
 function changeFace(type){
@@ -208,6 +247,10 @@ function mergeImages() {
     const fingerImage = document.getElementById('finger-image'); 
     const ctx = canvas.getContext('2d');        
 
+    // 设置 canvas 的宽高为背景图片的宽高
+    canvas.width = backgroundImage.width;
+    canvas.height = backgroundImage.height;       
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(backgroundImage, 0, 0, backgroundImage.width, backgroundImage.height);
     
@@ -235,6 +278,7 @@ function mergeImages() {
         ctx.drawImage(foregroundImage, left, top, width, height);
         
         fileName=backgroundImage.src.split("/").pop()
+        console.log(fileName);
         console.log(backgroundImage.src.split("/").pop());
         if (fileName=="B03.png" || fileName=="B05.png"){
             let width = fingerImage.width;
@@ -278,7 +322,7 @@ function getForm(id){
     
     // 绑定下载按钮事件处理
     downloadBtn.addEventListener('click', function() {
-        downloadImage(img.src);
+        downloadImage();
     });
 
     modal.style.display = "block";

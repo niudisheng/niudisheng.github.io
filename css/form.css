@@ -21,7 +21,6 @@
     position: relative; /* 相对定位，以便于放置关闭按钮 */
     display: flex;
     justify-content: space-between; /* 空间均匀分布 */
-    /* background-color: chartreuse; */
 }
 
 /* 图片切换容器 */
@@ -32,58 +31,88 @@
     display: flex;
     flex-direction: column; /* 纵向排列 */
     justify-content: center; /* 垂直居中 */
-    background-color: firebrick;
+    background: linear-gradient(135deg, #f3f4f6, #e5e7eb); /* 背景渐变 */
+    border-radius: 1rem; /* 圆角 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影 */
+    padding: 1rem; /* 内边距 */
 }
 
 .fg .image {
     display: none;
-    /* position: absolute; */
     top: 0;
     left: 0;
     height: auto;
     opacity: 0;
 }
 
+/* 右侧内容容器样式 */
+.right-content {
+    width: 50%; /* 右侧宽度 */
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    align-items: flex-end;
+    padding: 1rem;
+    background: linear-gradient(135deg, #e0f7fa, #80deea); /* 背景渐变 */
+    border: 1px solid #b0bec5; /* 边框颜色 */
+    border-radius: 1rem; /* 圆角 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影 */
+    gap: 1rem; /* 行间距 */
+}
+
 .front {
-    
     display: flex;
     float: left;
     flex-direction: column;
     width: 100%; /* 宽度可以根据需要调整 */
-    gap: 10px; /* 行间距 */
-    /* 初始化为收起状态 */
-    /* max-height: auto; */
+    gap: 1rem; /* 行间距 */
     transition: max-height 0.5s ease-out;
+    overflow: hidden; /* 隐藏超出的内容 */
     
-    
-    overflow: hidden; 
-    /* 隐藏超出的内容 */
 }
 
 .row {
     display: flex;
-    gap: 0.5rem; /* 列间距 */
+    gap: 0.3rem; /* 列间距 */
+    
 }
 
 .row img {
-    height: 10rem;
+    height: 9.5rem;
     width: auto;
     max-width: 100%;
     cursor: pointer;
-    border: #D24DE7 1px solid;
-    
+    border: 2px solid #b0bec5; /* 边框颜色 */
+    border-radius: 1rem; /* 圆角 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影 */
+    transition: transform 0.3s, box-shadow 0.3s; /* 过渡效果 */
 }
+
+.row img:hover {
+    transform: scale(1.05); /* 放大效果 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 增强阴影 */
+}
+
 .row1 {
     left: 1rem;
     display: flex;
     gap: 1.5rem; /* 列间距 */
 }
+
 .row1 img {
     height: 5rem;
     width: auto;
     max-width: 100%;
     cursor: pointer;
-    
+    border: 2px solid #b0bec5; /* 边框颜色 */
+    border-radius: 1rem; /* 圆角 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影 */
+    transition: transform 0.3s, box-shadow 0.3s; /* 过渡效果 */
+}
+
+.row1 img:hover {
+    transform: scale(1.05); /* 放大效果 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 增强阴影 */
 }
 .merged-image {
     /* position: absolute; */
@@ -94,16 +123,7 @@
     display: inline-block;
 }
 
-/* 右侧内容容器样式 */
-.right-content {
-    width: 50%; /* 右侧宽度 */
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: flex-end;
-    padding-right: 2rem;
-    background-color: aquamarine;
-}
+
 
 /* 下载按钮样式 */
 .download-button {
@@ -115,10 +135,12 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
+    border: black 1px solid;
 }
 
 .download-button:hover {
     background-color: #ddd;
+    border: black 1px solid;
 }
 
 /* 关闭按钮样式 */
