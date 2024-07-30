@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>谁家小孩，我家的</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/form.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="js/button.js"></script>
+    <script src="js/voiceButton.js"></script>
     <script src="js/background.js"></script>
     <script src="js/form.js"></script>
+    <!-- <script src="js/select.js"></script> -->
     
+        
+
 </head>
 <body>
     <div  style="display: grid; grid-template-columns: auto auto; column-gap: 2rem; place-items: center;">
@@ -24,13 +28,41 @@
     <div id="myModal" class="popup">
         <div class="popup-content">
             <div class="fg" >
-                <canvas id="canvas" width="2000" height="4000" style="display: none;"></canvas>
-                <img id="background-image" src="image/fg/mis/z2/A01.png" alt="Background Image" class="image">
+                <canvas id="canvas" width="2000" height="3200" style="display: none;"></canvas>
+                <img id="background-image" src="image/fg/mis/z2/A01.png" alt="TypeA1" class="image">
                 <img id="foreground-image" src="image/fg/mis/z2/a1.png" alt="Foreground Image" class="image">
+                <img id="finger-image" src="image/fg/mis/z2/b97.png" alt="Foreground Image" class="image">
                 <img id="merged-image" class="merged-image" alt="Merged Image">
             </div>
             <span class="close">&times;</span>
-            <div class="right-content">
+
+            <div class="right-content" style="float: left;">
+                <button id="fgButton" class="select-title">
+                    立绘:
+                    <i class="fa-solid fa-circle-chevron-down"></i>
+                </button>
+                <div id="faceContainer" style=" margin-right: auto;">
+                    <div class="front" id="fg-container">
+                        <!-- 图片将动态插入这里 -->
+                    </div>
+                    
+                    
+                </div>
+                <button id="faceButton" class="select-title">
+                    表情:
+                    <i class="fa-solid fa-circle-chevron-down"></i>
+                </button>                
+                <div id="faceContainer" style="float: left; background-color: blue;margin-right: auto;">
+                    <div class="front" id="face-container">
+                        <!-- 图片将动态插入这里 -->
+                    </div>                   
+                    
+                </div>
+                <script>
+                    loadfg();
+                    setButton();
+                </script>
+                
                 <p id="caption" style="font-size: 3rem;">点击即可获得完全版的可爱↓</p>
                 <button class="download-button" id="downloadBtn">
                     Download
@@ -39,7 +71,9 @@
             </div>
         </div>
     </div>
-
+    <script>
+        
+    </script>
     <!-- 人物介绍 -->
     <div class="container">
         <img src="image/Misuzu.png" alt="心铃酱的可爱立绘" class="character-image" id="characterImage" onclick="getForm('merged-image')">
