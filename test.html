@@ -1,165 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>谁家小孩，我家的</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/form.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="js/button.js"></script>
-    <script src="js/background.js"></script>
-    <script src="js/form.js"></script>
-    <!-- <script src="js/select.js"></script> -->
-    
+    <title>角色CG展示页面</title>
     <style>
-       
-       .front {
-            transition: max-height 0.5s ease-out;
-            max-height: 0; /* 初始化为收起状态 */
-            overflow: hidden; 
-            /* 隐藏超出的内容 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
         }
-        
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .gallery img {
+            max-width: 100%;
+            height: auto;
+            display: none;
+        }
+        .gallery img.active {
+            display: block;
+        }
+        .gallery-buttons {
+            margin-top: 10px;
+        }
+        .gallery-buttons button {
+            padding: 10px;
+            margin: 0 5px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .gallery-buttons button:hover {
+            background-color: #555;
+        }
+        .description {
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
-
-        
-
 </head>
 <body>
-    <div  style="display: grid; grid-template-columns: auto auto; column-gap: 2rem; place-items: center;">
-        <h1 style="margin-right: 2rem;font-size: 5rem;">非常好心铃，爱来自牛笛声❤</h1>
-        <button class="playButton"  onclick="backgroundPlay()">
-            <i id="backgroudMusic" class="fa-solid fa-music fa-2xl" style="color: #B197FC;font-size: 5rem;"></i>
-        </button>
-    </div>
 
-    <br>
-    <!-- 弹出窗口 -->
-    <div id="myModal" class="popup">
-        <div class="popup-content">
-            <div class="fg" >
-                <canvas id="canvas" width="2000" height="3200" style="display: none;"></canvas>
-                <img id="background-image" src="image/fg/mis/z2/A01.png" alt="TypeA1" class="image">
-                <img id="foreground-image" src="image/fg/mis/z2/a1.png" alt="Foreground Image" class="image">
-                <img id="finger-image" src="image/fg/mis/z2/b97.png" alt="Foreground Image" class="image">
-                <img id="merged-image" class="merged-image" alt="Merged Image">
-            </div>
-            <span class="close">&times;</span>
+    <header>
+        <h1>角色CG展示页面</h1>
+    </header>
 
-            <div class="right-content" style="float: left;">
-                <button id="toggleButton" class="select-title">
-                    立绘:
-                    <i class="fa-light fa-circle-chevron-up"></i>
-                </button>
-                <!-- <p class="select-title" >立绘：</p>                 -->
-                <div id="faceContainer" style=" margin-right: auto;">
-                    <div class="front" id="fg-container">
-                        <!-- 图片将动态插入这里 -->
-                    </div>
-                    
-                    
-                </div>
-                <p class="select-title">表情：</p>                
-                <div id="faceContainer" style="float: left; background-color: blue;margin-right: auto;">
-                    <div class="front" id="face-container">
-                        <!-- 图片将动态插入这里 -->
-                    </div>                   
-                    
-                </div>
-                <script>
-                    loadfg()
-                    // loadFace()
-                </script>
-                
-                <p id="caption" style="font-size: 3rem;">点击即可获得完全版的可爱↓</p>
-                <button class="download-button" id="downloadBtn">
-                    Download
-                    <i class="fa-solid fa-download"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-    <script>
-        function toggleFront() {
-            const front = document.getElementById('fg-container');
-            if (front.style.display === 'none') {
-                front.style.display = 'block';
-            } else {
-                front.style.display = 'none';
-            }
-        }
-    </script>
-    <!-- 人物介绍 -->
     <div class="container">
-        <img src="image/Misuzu.png" alt="心铃酱的可爱立绘" class="character-image" id="characterImage" onclick="getForm('merged-image')">
-            
-         <div class="text-container">
-            <p class="chara-name" style="color: black; font-size: 5rem;font-family: kaiti;">本间心铃</p>
-            <br>
-            <p class="chara-name" style="color: black; font-size: 3rem;">本名:本間（ほんま） 心鈴（みすず）</p>
-            <p class="chara-name" style="margin-left: 7rem;color:black;">Honma     <span style="margin-left: 10rem;">Misuzu</span></p>
-            <p class="chara-name" style="font-size: 2rem;color: #D24DE7;"> <span style="font-size: 3rem;";>人物介绍：</span>本间礼次郎的女儿。
-                也是中村丽华的女儿。
-                拥有着和丽华一样的外表，
-                有着与礼次郎相似可怕的眼睛，鸟谷纱希评价她是“可怕的女儿”。
-                但是，她任何事都会深思熟虑，
-                举止得体，
-                让人感觉不到危险性。
-                称鱼鹰的冠羽为「心意気」。</p>
-            <p>
-                <br>    
-                <br>
-                <button class="playButton" onclick="togglePlay(0)">
-                    <i class="fa-solid fa-circle-play fa-2xl" style="color: #B197FC;font-size: 5rem;"></i>
-                </button>
-                <button class="playButton" onclick="togglePlay(1)">
-                    <i class="fa-solid fa-circle-play fa-2xl" style="color: #B197FC;font-size: 5rem;"></i>
-                </button>
-                <button class="playButton" onclick="togglePlay(2)">
-                    <i class="fa-solid fa-circle-play fa-2xl" style="color: #B197FC;font-size: 5rem;"></i>
-                </button>
-            </p>
-            </div>
-        <!-- <img id="characterImage" src="character_idle.png" alt="Character Image"> -->
-    </div>
-
-
-
-    <div>
-        <span class="b2">我老婆本间心铃，黑发萝莉双马尾，童颜巨乳白发带，一颗呆毛，尽显可爱</span>
-        <br>
-        <span class="b1">你怎么知道</span>
-        <br>
-        <div class="image-container" onclick="playSound('sound1')">
-            <img src="image/p0.png" alt="Original Image" class="centerimage">
-            <img src="image/p1.png" alt="Hover Image" class="centerimage hover">
+        <div class="gallery">
+            <img src="cg1.jpg" alt="角色CG1" class="active">
+            <img src="cg2.jpg" alt="角色CG2">
+            <img src="cg3.jpg" alt="角色CG3">
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <span class="b1 right-aligned" style="color: green;">你怎么知道</span>
-        <br>
-        <span class="b2 right-aligned" style="color: violet;">我老婆美若天仙，勤俭持家，冰雪聪明，彬彬有礼，连工口的事情都略知一二</span>
-        <span class="a">这是我老婆！↓</span>
-        <div></div>
+        <div class="gallery-buttons">
+            <button onclick="prevImage()">上一张</button>
+            <button onclick="nextImage()">下一张</button>
+        </div>
+        <div class="description">
+            <p id="description">这是角色CG1的描述。</p>
+        </div>
     </div>
-    <div class="image-container">
-        <img src="image/01.png" alt="Original Image">
-        <img src="image/02.png" alt="Hover Image" class="hover">
-    </div>
-    <!-- 音频文件 -->
-    <audio id="sound1" src="sound/盯.mp3"></audio>
-    
 
     <script>
-        function playSound(soundId) {
-            const audio = document.getElementById(soundId);
-            audio.currentTime = 0; // 重置音频播放时间
-            audio.play();
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.gallery img');
+        const descriptions = [
+            '这是角色CG1的描述。',
+            '这是角色CG2的描述。',
+            '这是角色CG3的描述。'
+        ];
+        const descriptionElement = document.getElementById('description');
+
+        function showImage(index) {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (index + images.length) % images.length;
+            images[currentIndex].classList.add('active');
+            descriptionElement.textContent = descriptions[currentIndex];
+        }
+
+        function prevImage() {
+            showImage(currentIndex - 1);
+        }
+
+        function nextImage() {
+            showImage(currentIndex + 1);
         }
     </script>
+
 </body>
 </html>

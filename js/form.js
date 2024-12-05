@@ -1,69 +1,65 @@
 function loadfg() {
-    document.addEventListener('DOMContentLoaded', function() {
-        // 图片数据数组，按行分组
-        const imageData = [
-            [
-                { src: 'image/fg/mis/z2/A01.png', alt: 'TypeA1' },
-                { src: 'image/fg/mis/z2/A02.png', alt: 'TypeA1' },
-                { src: 'image/fg/mis/z2/A03.png', alt: 'TypeA2' },
-                { src: 'image/fg/mis/z2/A04.png', alt: 'TypeA2' }
-            ],
-            [
-                { src: 'image/fg/mis/z2/B01.png', alt: 'TypeB1' },
-                { src: 'image/fg/mis/z2/B02.png', alt: 'TypeB2' },
-                { src: 'image/fg/mis/z2/B03.png', alt: 'TypeB2' },
-                { src: 'image/fg/mis/z2/B04.png', alt: 'TypeB3' },
-                { src: 'image/fg/mis/z2/B05.png', alt: 'TypeB3' },
-                { src: 'image/fg/mis/z2/B06.png', alt: 'TypeE' }
+    // 图片数据数组，按行分组
+    const imageData = [
+        [
+            { src: 'image/fg/mis/z2/A01.png', alt: 'TypeA1' },
+            { src: 'image/fg/mis/z2/A02.png', alt: 'TypeA1' },
+            { src: 'image/fg/mis/z2/A03.png', alt: 'TypeA2' },
+            { src: 'image/fg/mis/z2/A04.png', alt: 'TypeA2' }
+        ],
+        [
+            { src: 'image/fg/mis/z2/B01.png', alt: 'TypeB1' },
+            { src: 'image/fg/mis/z2/B02.png', alt: 'TypeB2' },
+            { src: 'image/fg/mis/z2/B03.png', alt: 'TypeB2' },
+            { src: 'image/fg/mis/z2/B04.png', alt: 'TypeB3' },
+            { src: 'image/fg/mis/z2/B05.png', alt: 'TypeB3' },
+            { src: 'image/fg/mis/z2/B06.png', alt: 'TypeE' }
+            
+        ],
+        [
+            { src: 'image/fg/mis/z2/C01.png', alt: 'TypeC' },
+            { src: 'image/fg/mis/z2/C02.png', alt: 'TypeC' }
+        ]
+    ];
+
+    const fgContainer = document.getElementById('fg-container');
+
+    // 底图
+    const targetImage = document.getElementById('background-image');
+
+    
+    // 动态生成图片行并插入到容器中
+    imageData.forEach(rowData => {
+        const rowDiv = document.createElement('div');
+        rowDiv.classList.add('row');
+
+        rowData.forEach(image => {
+            const imgElement = document.createElement('img');
+            imgElement.src = image.src;
+            imgElement.alt = image.alt;
+
+            // 添加点击事件监听器
+            imgElement.addEventListener('click', function() {
+                targetImage.src = image.src;
+                targetImage.alt = image.alt;
+                // 切换表情栏，配合立绘变化
+                loadFace(targetImage.alt);
+                changeFace(targetImage.alt);
                 
-            ],
-            [
-                { src: 'image/fg/mis/z2/C01.png', alt: 'TypeC' },
-                { src: 'image/fg/mis/z2/C02.png', alt: 'TypeC' }
-            ]
-        ];
-
-        const fgContainer = document.getElementById('fg-container');
-
-        // 底图
-        const targetImage = document.getElementById('background-image');
-
-        
-        // 动态生成图片行并插入到容器中
-        imageData.forEach(rowData => {
-            const rowDiv = document.createElement('div');
-            rowDiv.classList.add('row');
-
-            rowData.forEach(image => {
-                const imgElement = document.createElement('img');
-                imgElement.src = image.src;
-                imgElement.alt = image.alt;
-
-                // 添加点击事件监听器
-                imgElement.addEventListener('click', function() {
-                    targetImage.src = image.src;
-                    targetImage.alt = image.alt;
-                    loadFace(targetImage.alt);
-                    changeFace(targetImage.alt);
-                    
-                    
-                });
-
-                rowDiv.appendChild(imgElement);
+                
             });
 
-            fgContainer.appendChild(rowDiv);
-            loadFace(targetImage.alt) 
+            rowDiv.appendChild(imgElement);
         });
-        // preloadImages(imageData);
-        
-        
+
+        fgContainer.appendChild(rowDiv);
+        loadFace(targetImage.alt) 
     });
     };
 function setButton() {    
         // 以下为按钮控制展开和收起功能
-        const toggleButton = document.getElementById('fgButton');
-        const toggleButton2 = document.getElementById('faceButton');
+        const FgButton = document.getElementById('fgButton');
+        const FaceButton = document.getElementById('faceButton');
         const faceContainer = document.getElementById('face-container');
         const fgContainer = document.getElementById('fg-container');
         
@@ -73,37 +69,38 @@ function setButton() {
         faceContainer.style.maxHeight = faceContainer.scrollHeight + 'px';
 
         // 点击按钮时展开或收起 front 容器
-        toggleButton.addEventListener('click', function() {
+        FgButton.addEventListener('click', function() {            
+            const transitionDuration = getComputedStyle(faceContainer).transitionDuration;
+            const transitionDurationMs = parseFloat(transitionDuration) * 1000;
             if (fgContainer.style.maxHeight === '0px') {
                 fgContainer.style.maxHeight = fgContainer.scrollHeight + 'px';
-                fgContainer.style.overflow = 'visible';
-                // console.log(fgContainer.overflow);
-                // fgContainer.style.maxHeight = 506 + 'px';
-                // console.log(fgContainer.scrollHeight);
+                // 等待过渡时间后再执行
+                setTimeout(function() {
+                    fgContainer.style.overflow = 'visible';
+                }, transitionDurationMs);
             } else {
                 fgContainer.style.overflow = 'hidden';
                 fgContainer.style.maxHeight = '0px';
             }
         });
         // 点击按钮时展开或收起 front 容器
-        toggleButton2.addEventListener('click', function() {
+        FaceButton.addEventListener('click', function() {            
+            const transitionDuration = getComputedStyle(faceContainer).transitionDuration;
+            const transitionDurationMs = parseFloat(transitionDuration) * 1000;
             if (faceContainer.style.maxHeight === '0px') {
                 faceContainer.style.maxHeight = faceContainer.scrollHeight + 'px';
-                faceContainer.style.overflow = 'visible';
+                // 等待过渡时间后再执行
+                setTimeout(function() {
+                    faceContainer.style.overflow = 'visible';
+                }, transitionDurationMs);
             } else {
                 faceContainer.style.overflow = 'hidden';
                 faceContainer.style.maxHeight = '0px';
             }
+            
         });
         
     };
-function preloadImages(imageData) {
-    imageData.flat().forEach(image => {
-        const img = new Image();
-        console.log(image.src);
-        img.src = image.src;
-    });
-}
 function loadFace(type){
     console.log(type);
     const name_dic={
@@ -203,7 +200,7 @@ function loadFace(type){
 
         container.appendChild(rowDiv);
     });
-    }
+}
 // 下载图片的函数
 function downloadImage() {
     // 下载合成后的图像
@@ -280,6 +277,7 @@ function mergeImages() {
         fileName=backgroundImage.src.split("/").pop()
         console.log(fileName);
         console.log(backgroundImage.src.split("/").pop());
+        //手指拼合处理
         if (fileName=="B03.png" || fileName=="B05.png"){
             let width = fingerImage.width;
             let height = fingerImage.height;
@@ -297,8 +295,7 @@ function mergeImages() {
         
     }
     //不需要绘制表情的时候
-    else{
-        // foregroundImage.src=null;
+    else{       
         console.log("图片类型不存在");
     }
     let mergedImage = document.getElementById('merged-image');
@@ -306,19 +303,15 @@ function mergeImages() {
 
     
 }
-function getForm(id){
-    
-    // console.log("id="+id);
+//在立绘处调用，打开二级界面
+function getForm(){
     var modal = document.getElementById("myModal");
-    // 获取图片并将其插入模态窗口 - 使用其“alt”文本作为标题
-    var img = document.getElementById(id);
-    
-    var captionText = document.getElementById("caption");
+
     // 新增下载按钮相关代码
     var downloadBtn = document.getElementById('downloadBtn');
     
     mergeImages();
-    // modalImg.src = img.src;
+
     
     // 绑定下载按钮事件处理
     downloadBtn.addEventListener('click', function() {
@@ -326,7 +319,7 @@ function getForm(id){
     });
 
     modal.style.display = "block";
-    // captionText.innerHTML = img.alt;
+    
 
     
     // 获取关闭按钮
@@ -346,4 +339,8 @@ function getForm(id){
             document.body.style.overflow = 'auto';
         }
     }
+}
+function preloadImages() 
+{
+
 }

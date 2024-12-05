@@ -23,7 +23,7 @@ function backgroundPlay() {
         backgroundPlaying = true;
         Bgm.addEventListener('ended', function() {
             
-            togglePlay();
+            backgroundPlay()
             console.log('ended');
         });
     }

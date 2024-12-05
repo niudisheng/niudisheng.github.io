@@ -10,9 +10,6 @@
     <script src="js/voiceButton.js"></script>
     <script src="js/background.js"></script>
     <script src="js/form.js"></script>
-    <!-- <script src="js/select.js"></script> -->
-    
-        
 
 </head>
 <body>
@@ -35,7 +32,7 @@
                 <img id="merged-image" class="merged-image" alt="Merged Image">
             </div>
             <span class="close">&times;</span>
-
+            <!-- 右侧内容 主要是选框的内容 -->
             <div class="right-content" style="float: left;">
                 <button id="fgButton" class="select-title">
                     立绘
@@ -65,18 +62,18 @@
                 
                 <p id="caption" style="font-size: 3rem;">点击即可获得完全版的可爱</p>
                 <button class="download-button" id="downloadBtn">
-                    Download
-                    <i class="fa-solid fa-download"></i>
+                    <span>
+                        Download
+                        <i class="fa-solid fa-download"></i>
+                    </span>
                 </button>
             </div>
         </div>
     </div>
-    <script>
-        
-    </script>
+    
     <!-- 人物介绍 -->
     <div class="container">
-        <img src="image/Misuzu.png" alt="心铃酱的可爱立绘" class="character-image" id="characterImage" onclick="getForm('merged-image')">
+        <img src="image/Misuzu.png" alt="心铃酱的可爱立绘" class="character-image" id="characterImage" onclick="getForm()">
             
          <div class="text-container">
             <p class="chara-name" style="color: black; font-size: 5rem;font-family: kaiti;">本间心铃</p>
