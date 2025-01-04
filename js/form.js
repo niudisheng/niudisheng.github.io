@@ -76,7 +76,8 @@ function setButton() {
                 fgContainer.style.maxHeight = fgContainer.scrollHeight + 'px';
                 // 等待过渡时间后再执行
                 setTimeout(function() {
-                    fgContainer.style.overflow = 'visible';
+                    if(fgContainer.style.maxHeight !== '0px')
+                        fgContainer.style.overflow = 'visible';
                 }, transitionDurationMs);
             } else {
                 fgContainer.style.overflow = 'hidden';
@@ -91,7 +92,8 @@ function setButton() {
                 faceContainer.style.maxHeight = faceContainer.scrollHeight + 'px';
                 // 等待过渡时间后再执行
                 setTimeout(function() {
-                    faceContainer.style.overflow = 'visible';
+                    if(faceContainer.style.maxHeight !== '0px')
+                        faceContainer.style.overflow = 'visible';
                 }, transitionDurationMs);
             } else {
                 faceContainer.style.overflow = 'hidden';
@@ -339,8 +341,4 @@ function getForm(){
             document.body.style.overflow = 'auto';
         }
     }
-}
-function preloadImages() 
-{
-
 }

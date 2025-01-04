@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页测试中</title>
+    <link rel="stylesheet" href="./css/style1.css">
+    <style>
+        /* 添加内联样式以快速展示效果 */
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <a href="#home">首页</a>
+        <a href="#learning">学习经历</a>
+        <a href="#projects">项目经历</a>
+        
+    </nav>
+
+    <h1 id="home">
+        这里是我的个人网页，欢迎来访！
+    </h1>
+    <h2>
+        随缘更新
+    </h2>
+    <div class="text-container" id="learning">
+        
+        <p>
+            熟悉的编程语言：Python，c#
+        </p>
+        <p>
+            学过的技术：unity3D，web开发，网络爬虫
+        </p>
+        <p id="projects">
+            项目经历：
+            <div>
+                <h3>
+                    游戏开发：
+                    参与过数次游戏制作活动，负责游戏的策划、美术、程序开发、测试等工作。
+                    主要以程序身份参与开发，制作过放置游戏，弹幕游戏，卡牌游戏等。
+                    熟悉unity引擎，独立制作过镜头系统，玩家操作系统，写过有限状态机，游戏资产封装管理，游戏本地存档管理，网络请求和外部接口调用等功能
+                </h3>
+                <div>                
+                    游戏pv：
+                    <br>
+                    <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=1204012108&bvid=BV1Lf421D7mo&cid=1534235805&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                </div>
+                
+                <h4>
+                    Python项目：
+                    用pyqt及AI模型制作过一个AI智能翻译内嵌的软件。
+                    用scarpy爬取网页数据，用mysql命令存入数据库，读取数据库将其写入excel文件并分析。
+                </h4>
+                网页开发项目实战：
+                <a href="index.html">关于本间心铃的人物展示页面</a>
+                <br>
+                <a href="CG.html">人物cg展示页面</a>
+            </div>
+        </p>
+    </div>
+</body>
+</html>
